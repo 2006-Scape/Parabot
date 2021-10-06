@@ -9,6 +9,8 @@ import org.parabot.environment.api.utils.Version;
  */
 public class Configuration extends org.parabot.api.Configuration {
 
+    public static final String WEBSITE_LINK = "https://2006Scape.org/";
+    public static final String SDN_PAGE = "https://2006Scape.org/sdn/";
     public static final String GET_RANDOMS = "https://2006Scape.org/Downloads/bot/Randoms-0.26.1.jar";
 
     public static final String GET_SERVER_PROVIDER_TYPE = "http://v3.bdn.parabot.org/api/bot/server/type?server=%s";
@@ -20,7 +22,4 @@ public class Configuration extends org.parabot.api.Configuration {
     public static final String ITEM_API = DATA_API + "items/";
 
     public static final Version BOT_VERSION = ProjectProperties.getProjectVersion();
-
-    public static final String COMMUNITY_PAGE = "https://www.parabot.org/community/";
-    public static final String BDN_PAGE = "http://bdn.parabot.org/scripts/";
 }

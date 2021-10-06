@@ -102,7 +102,7 @@ public abstract class ServerProvider implements Opcodes {
                         "Broken hook:\r\n" + inj, new Object[]{ "Close", "Report here..." }, JOptionPane.ERROR_MESSAGE);
 
                 if (resp == 1) {
-                    URI uri = URI.create(Configuration.COMMUNITY_PAGE + "forum/135-reports/");
+                    URI uri = URI.create(Configuration.WEBSITE_LINK + "forum/135-reports/");
                     try {
                         Desktop.getDesktop().browse(uri);
                     } catch (IOException ignore) {

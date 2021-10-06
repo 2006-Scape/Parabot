@@ -198,7 +198,7 @@ public final class ScriptSelector extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 URI uri = URI
-                        .create(Configuration.BDN_PAGE);
+                        .create(Configuration.SDN_PAGE);
                 try {
                     Desktop.getDesktop().browse(uri);
                 } catch (IOException e1) {
