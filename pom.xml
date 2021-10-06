@@ -6,7 +6,7 @@
 
     <groupId>org.parabot</groupId>
     <artifactId>client</artifactId>
-    <version>2.8.2</version>
+    <version>3.0.0</version>
   
     <packaging>jar</packaging>
 
@@ -78,7 +78,7 @@
     </dependencies>
 
     <build>
-        <finalName>Parabot-V${version}${build.version}</finalName>
+        <finalName>Parabot-V${project.version}${build.version}</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -197,7 +197,7 @@
         <site>
             <id>parabot-maven</id>
             <name>Frontend Parabot Maven</name>
-            <url>ftp://maven.parabot.org/public_html/docs/${artifactId}/</url>
+            <url>ftp://maven.parabot.org/public_html/docs/${project.artifactId}/</url>
         </site>
     </distributionManagement>
 

@@ -8,8 +8,6 @@ import org.parabot.core.asm.wrappers.Interface;
 import org.parabot.core.asm.wrappers.Invoker;
 import org.parabot.core.asm.wrappers.Setter;
 import org.parabot.core.asm.wrappers.Super;
-import org.parabot.core.forum.AccountManager;
-import org.parabot.core.forum.AccountManagerAccess;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,14 +21,6 @@ import java.util.Map;
  * @author Everel, JKetelaar
  */
 public abstract class HookParser {
-
-    protected static AccountManager manager;
-    public static final AccountManagerAccess MANAGER_FETCHER = new AccountManagerAccess() {
-        @Override
-        public final void setManager(AccountManager manager) {
-            HookParser.manager = manager;
-        }
-    };
 
     public HookParser(HookFile hookFile) {
 

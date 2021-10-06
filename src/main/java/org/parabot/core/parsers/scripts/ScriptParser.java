@@ -23,14 +23,7 @@ public abstract class ScriptParser {
     public static ScriptDescription[] getDescriptions() {
         SCRIPT_CACHE.clear();
         parsers.clear();
-        if (Core.inLoadLocal()) {
-            parsers.add(new LocalJavaScripts());
-            parsers.add(new BDNScripts());
-        } else if (Core.inDebugMode()) {
-            parsers.add(new LocalJavaScripts());
-        } else {
-            parsers.add(new BDNScripts());
-        }
+        parsers.add(new LocalJavaScripts());
 
         Core.verbose("Parsing scripts...");
         for (final ScriptParser parser : parsers) {

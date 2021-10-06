@@ -2,7 +2,6 @@ package org.parabot.core.ui;
 
 import org.parabot.core.Configuration;
 import org.parabot.core.Core;
-import org.parabot.core.forum.AccountManager;
 import org.parabot.core.ui.images.Images;
 import org.parabot.core.ui.utils.SwingUtil;
 import org.parabot.core.ui.utils.UILog;
@@ -35,7 +34,6 @@ import javax.swing.JTextField;
 public class LoginUI extends JFrame {
     private static final long serialVersionUID = 2032832552863466297L;
     private static LoginUI instance;
-    private static AccountManager manager;
 
     private JTextField txtUsername;
     private JPasswordField txtPassword;
@@ -149,31 +147,10 @@ public class LoginUI extends JFrame {
     public void attemptLogin() {
         String username = txtUsername.getText();
         String password = new String(txtPassword.getPassword());
-
-        if (username.length() > 0 && password.length() > 0) {
-            if (manager.login(username, password, false)) {
-                Core.verbose("Logged in.");
-                instance.dispose();
-                Core.verbose("Running server selector.");
-                ServerSelector.getInstance();
-            } else {
-                Core.verbose("Failed to log in.");
-                UILog.log("Error", "Incorrect username or password. Have you tried logging into http://bdn.parabot.org/account/", JOptionPane.ERROR_MESSAGE);
-            }
-        }
+        
     }
 
     private void attempt(String user, String pass) {
-        Core.verbose("Logging in...");
-        if (manager.login(user, pass, false)) {
-            Core.verbose("Logged in.");
-            instance.dispose();
-            Core.verbose("Running server selector.");
-            ServerSelector.getInstance();
-        } else {
-            Core.verbose("Failed to log in.");
-            UILog.log("Error", "Incorrect username or password. Have you tried logging into http://bdn.parabot.org/account/", JOptionPane.ERROR_MESSAGE);
-        }
 
     }
 

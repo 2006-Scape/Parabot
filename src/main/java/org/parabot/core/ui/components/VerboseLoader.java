@@ -2,8 +2,6 @@ package org.parabot.core.ui.components;
 
 import org.parabot.core.Configuration;
 import org.parabot.core.Core;
-import org.parabot.core.forum.AccountManager;
-import org.parabot.core.forum.AccountManagerAccess;
 import org.parabot.core.io.ProgressListener;
 import org.parabot.core.ui.ServerSelector;
 import org.parabot.core.ui.fonts.Fonts;
@@ -48,15 +46,6 @@ public class VerboseLoader extends JPanel implements ProgressListener {
     private static final int STATE_SERVER_SELECT = 2;
     private static VerboseLoader current;
     private static String state = "Initializing loader...";
-    private static AccountManager manager;
-    public static final AccountManagerAccess MANAGER_FETCHER = new AccountManagerAccess() {
-
-        @Override
-        public final void setManager(AccountManager manager) {
-            VerboseLoader.manager = manager;
-        }
-
-    };
     private final BufferedImage background;
     private final BufferedImage banner;
     private final BufferedImage loginBox;
@@ -80,11 +69,7 @@ public class VerboseLoader extends JPanel implements ProgressListener {
         setDoubleBuffered(true);
         setOpaque(false);
 
-        if (username != null && password != null) {
-            if (Core.inDebugMode() || manager.login(username, password, false)) {
-                currentState = STATE_SERVER_SELECT;
-            }
-        }
+        currentState = STATE_SERVER_SELECT; //Force Server Select
 
         if (currentState == STATE_AUTHENTICATION) {
             addLoginPanel();
@@ -185,19 +170,6 @@ public class VerboseLoader extends JPanel implements ProgressListener {
 
         login.setAlignmentX(Box.CENTER_ALIGNMENT);
         login.setOpaque(false);
-
-        login.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (manager.login(userInput.getText(), passInput.getText(), false)) {
-                    switchState(STATE_SERVER_SELECT);
-                } else {
-                    Core.verbose("Failed to log in.");
-                    UILog.log("Error", "Incorrect username or password. Have you tried logging into http://bdn.parabot.org/account/", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-
-        });
 
         loginPanel.add(Box.createRigidArea(new Dimension(0, 8)));
         loginPanel.add(usernameLabel);

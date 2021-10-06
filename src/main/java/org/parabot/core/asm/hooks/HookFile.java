@@ -1,6 +1,5 @@
 package org.parabot.core.asm.hooks;
 
-import org.parabot.core.forum.AccountManager;
 import org.parabot.core.parsers.hooks.HookParser;
 import org.parabot.core.parsers.hooks.JSONHookParser;
 import org.parabot.core.parsers.hooks.XMLHookParser;
@@ -33,18 +32,6 @@ public class HookFile {
 
     public InputStream getInputStream() {
         return WebUtil.getInputStream(url);
-    }
-
-    public InputStream getInputStream(AccountManager manager) {
-        if (isLocal) {
-            return this.getInputStream();
-        } else {
-            try {
-                return WebUtil.getConnection(url, "apikey=" + manager.getAccount().getApi()).getInputStream();
-            } catch (IOException e) {
-                return null;
-            }
-        }
     }
 
     public HookParser getParser() {
