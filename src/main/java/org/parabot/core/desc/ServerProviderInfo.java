@@ -160,7 +160,7 @@ public class ServerProviderInfo {
             String randomsUrl = properties.getProperty("randoms_jar");
             if (randomsUrl == null || randomsUrl.length() == 0) {
                 // Fallback to default BDN URL if there is no 'randoms' specified in the server JSON configuration.
-                randomsUrl = Configuration.GET_RANDOMS + (Configuration.BOT_VERSION.isNightly() ? Configuration.NIGHTLY_APPEND : "");
+                randomsUrl = Configuration.GET_RANDOMS;
             }
             return new URL(randomsUrl);
         } catch (MalformedURLException e) {

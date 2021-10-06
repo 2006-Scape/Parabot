@@ -96,7 +96,7 @@ public class LocalServers extends ServerParser {
                 String randoms = (String) locations.get("randoms");
 
                 if (randoms == null) {
-                    randoms = Configuration.GET_RANDOMS + (Configuration.BOT_VERSION.isNightly() ? Configuration.NIGHTLY_APPEND : "");
+                    randoms = Configuration.GET_RANDOMS;
                 }
 
                 Core.verbose("[LocalServers]: Parsed server: " + name);
