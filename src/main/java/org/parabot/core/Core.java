@@ -3,7 +3,6 @@ package org.parabot.core;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.parabot.Landing;
-import org.parabot.api.translations.TranslationHelper;
 import org.parabot.core.ui.utils.UILog;
 import org.parabot.environment.api.utils.Version;
 import org.parabot.environment.api.utils.WebUtil;
@@ -183,16 +182,16 @@ public class Core {
     }
 
     public static void downloadNewVersion() {
-        UILog.log(TranslationHelper.translate("UPDATES"),
-                TranslationHelper.translate("DOWNLOAD_UPDATE_PARABOT_AT")
+        UILog.log("Updates",
+                "Please download the newest version of Parabot at "
                         + Configuration.DOWNLOAD_BOT + (currentVersion.isNightly() ? Configuration.NIGHTLY_APPEND : ""),
                 JOptionPane.INFORMATION_MESSAGE);
         URI uri = URI.create(Configuration.API_DOWNLOAD_BOT + (currentVersion.isNightly() ? Configuration.NIGHTLY_APPEND : ""));
         try {
             Desktop.getDesktop().browse(uri);
         } catch (IOException e1) {
-            JOptionPane.showMessageDialog(null, TranslationHelper.translate("CONNECTION_ERROR"),
-                    TranslationHelper.translate("ERROR"), JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Connection Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             e1.printStackTrace();
         }
     }

@@ -1,6 +1,5 @@
 package org.parabot;
 
-import org.parabot.api.translations.TranslationHelper;
 import org.parabot.core.Context;
 import org.parabot.core.Core;
 import org.parabot.core.Directories;
@@ -41,10 +40,10 @@ public final class Landing {
 
         Directories.validate();
 
-        Core.verbose(TranslationHelper.translate("DEBUG_MODE") + Core.inDebugMode());
+        Core.verbose("Debug mode: " + Core.inDebugMode());
 
         try {
-            Core.verbose(TranslationHelper.translate("SETTING_LOOK_AND_FEEL")
+            Core.verbose("Setting look and feel: "
                     + UIManager.getSystemLookAndFeelClassName());
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Throwable t) {
@@ -58,7 +57,7 @@ public final class Landing {
             }
         }
 
-        Core.verbose(TranslationHelper.translate("VALIDATION_ACCOUNT_MANAGER"));
+        Core.verbose("Validating account manager...");
 
         if (username != null && password != null) {
             new BotUI(username, password);
@@ -67,7 +66,7 @@ public final class Landing {
             return;
         }
 
-        Core.verbose(TranslationHelper.translate("STARTING_LOGIN_GUI"));
+        Core.verbose("Starting login gui...");
         Core.setDebug(true); //offline mode
         Directories.clearCache(); //clear cache
         ServerSelector.initServer = "2006Scape";
@@ -80,7 +79,7 @@ public final class Landing {
             switch (arg.toLowerCase()) {
                 case "-createdirs":
                     Directories.validate();
-                    System.out.println(TranslationHelper.translate(("DIRECTORIES_CREATED")));
+                    System.out.println("Directories created, you can now run parabot.");
                     System.exit(0);
                     break;
                 case "-debug":
