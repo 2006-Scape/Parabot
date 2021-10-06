@@ -70,11 +70,6 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.parabot</groupId>
-            <artifactId>internal-api</artifactId>
-            <version>1.53.1</version>
-        </dependency>
     </dependencies>
 
     <build>
