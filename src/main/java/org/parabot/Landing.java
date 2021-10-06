@@ -12,7 +12,6 @@ import org.parabot.core.ui.utils.UILog;
 
 import java.io.File;
 
-import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 /**
@@ -44,13 +43,6 @@ public final class Landing {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Throwable t) {
             t.printStackTrace();
-        }
-
-        if (Core.hasValidation() && !Core.isValid()) {
-            if (Core.newVersionAlert() == JOptionPane.YES_OPTION) {
-                Core.downloadNewVersion();
-                return;
-            }
         }
 
         Core.verbose("Starting 2006Scape...");
@@ -109,10 +101,6 @@ public final class Landing {
                     break;
                 case "-no_sec":
                     Core.disableSec();
-                    break;
-                case "-no_validation":
-                case "-ignore_updates":
-                    Core.disableValidation();
                     break;
                 case "-uuid":
                     Core.setQuickLaunchByUuid(Integer.parseInt(args[++i]));
