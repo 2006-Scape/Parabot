@@ -30,10 +30,8 @@ public class Core {
 
     private static final Version currentVersion = Configuration.BOT_VERSION;
     private static int quickLaunchByUuid = -1; // used like -server, but denoted by an Int rather than the server name
-    private static boolean debug; // Debug mode is Offline Mode. No BDN connection for Servers/Scripts/User Login. Not related to debug messages.
     private static boolean verbose;
     private static boolean dump;
-    private static boolean loadLocal; //Loads both local and public scripts/servers
     private static boolean validate = true;
     private static boolean secure = true;
 
@@ -51,31 +49,6 @@ public class Core {
 
     public static void setQuickLaunchByUuid(int quickLaunchByUuid) {
         Core.quickLaunchByUuid = quickLaunchByUuid;
-    }
-
-    /**
-     * Enabled loadLocal mode
-     *
-     * @param loadLocal
-     */
-    public static void setLoadLocal(final boolean loadLocal) {
-        Core.loadLocal = loadLocal;
-    }
-
-    /**
-     * @return if the client is in loadLocal mode.
-     */
-    public static boolean inLoadLocal() {
-        return loadLocal;
-    }
-
-    /**
-     * Set debug mode AKA Offline Mode. If true, BDN login will be skipped, so BDN Servers or Scripts will be unavailable.
-     *
-     * @param debug
-     */
-    public static void setDebug(final boolean debug) {
-        Core.debug = debug;
     }
 
     /**
@@ -99,13 +72,6 @@ public class Core {
 
     public static boolean isSecure() {
         return secure;
-    }
-
-    /**
-     * @return if the client is in debug mode AKA Offline Mode. BDN Servers and Scripts are unavailable.
-     */
-    public static boolean inDebugMode() {
-        return debug;
     }
 
     /**

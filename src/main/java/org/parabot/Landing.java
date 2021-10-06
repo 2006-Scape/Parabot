@@ -21,8 +21,6 @@ import javax.swing.UIManager;
  * @see <a href="https://www.parabot.org">Homepage</a>
  */
 public final class Landing {
-    private static String username;
-    private static String password;
 
     public static void main(String... args) {
 //        Thread.setDefaultUncaughtExceptionHandler(new FileExceptionHandler(ExceptionHandler.ExceptionType.CLIENT));
@@ -40,8 +38,6 @@ public final class Landing {
 
         Directories.validate();
 
-        Core.verbose("Debug mode: " + Core.inDebugMode());
-
         try {
             Core.verbose("Setting look and feel: "
                     + UIManager.getSystemLookAndFeelClassName());
@@ -50,27 +46,16 @@ public final class Landing {
             t.printStackTrace();
         }
 
-        if (!Core.inDebugMode() && Core.hasValidation() && !Core.isValid()) {
+        if (Core.hasValidation() && !Core.isValid()) {
             if (Core.newVersionAlert() == JOptionPane.YES_OPTION) {
                 Core.downloadNewVersion();
                 return;
             }
         }
 
-        Core.verbose("Validating account manager...");
-
-        if (username != null && password != null) {
-            new BotUI(username, password);
-            username = null;
-            password = null;
-            return;
-        }
-
-        Core.verbose("Starting login gui...");
-        Core.setDebug(true); //offline mode
-        Directories.clearCache(); //clear cache
+        Core.verbose("Starting 2006Scape...");
         ServerSelector.initServer = "2006Scape";
-        new BotUI(null, null);
+        new BotUI();
     }
 
     private static void parseArgs(String... args) {
@@ -82,27 +67,13 @@ public final class Landing {
                     System.out.println("Directories created, you can now run parabot.");
                     System.exit(0);
                     break;
+                case "-dump":
                 case "-debug":
                     Core.setDump(true);
-                case "-offlinemode":
-                    Core.setDebug(true);
                     break;
                 case "-v":
                 case "-verbose":
                     Core.setVerbose(true);
-                    break;
-                case "-server":
-                    ServerSelector.initServer = args[++i];
-                    break;
-                case "-login":
-                    username = args[++i];
-                    password = args[++i];
-                    break;
-                case "-loadlocal":
-                    Core.setLoadLocal(true);
-                    break;
-                case "-dump":
-                    Core.setDump(true);
                     break;
                 case "-scriptsbin":
                     Directories.setScriptCompiledDirectory(new File(args[++i]));
