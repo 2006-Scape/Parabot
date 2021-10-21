@@ -51,7 +51,7 @@ public class ServerProviderInfo {
     }
 
     /**
-     * Initialize configuration with data provided by {@link org.parabot.core.parsers.servers.LocalServers} from a {@code /parabot/servers/config.json} file. Also loads the default Settings map from the BDN.
+     * Initialize configuration with data provided by {@link org.parabot.core.parsers.servers.LocalServers} from a {@code /2006Scape/servers/config.json} file.
      *
      * @param clientJar   Name of the client jar file
      * @param hooks       Name of the hooks file
@@ -64,7 +64,7 @@ public class ServerProviderInfo {
     }
 
     /**
-     * Initialize configuration with data provided by {@link org.parabot.core.parsers.servers.LocalServers} from a {@code /parabot/servers/config.json} file. Also loads the default Settings map from the BDN.
+     * Initialize configuration with data provided by {@link org.parabot.core.parsers.servers.LocalServers} from a {@code /2006Scape/servers/config.json} file.
      *
      * @param clientJar   Name of the client jar file
      * @param hooks       Name of the hooks file
@@ -76,14 +76,6 @@ public class ServerProviderInfo {
     public ServerProviderInfo(String clientJar, String hooks, String name, String clientClass, int bankTabs, String randoms) {
         this.properties = new Properties();
         this.settings = new HashMap<>();
-
-        try {
-            BufferedReader br = WebUtil.getReader(new URL(Configuration.GET_SERVER_SETTINGS));
-            JSONObject settings = (JSONObject) WebUtil.getJsonParser().parse(br);
-            parseSettings(settings);
-        } catch (ParseException | IOException e) {
-            e.printStackTrace();
-        }
 
         this.properties.setProperty("client_jar", clientJar);
         this.properties.setProperty("hooks", hooks);
