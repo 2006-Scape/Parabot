@@ -1,7 +1,8 @@
-package org.parabot.core.parsers.servers;
+package org.parabot.core.parsers;
 
 import org.parabot.core.Core;
 import org.parabot.core.desc.ServerDescription;
+import org.parabot.environment.servers.executers.LocalPublicServerExecuter;
 import org.parabot.environment.servers.executers.ServerExecuter;
 
 import java.util.ArrayList;
@@ -19,20 +20,8 @@ public abstract class ServerParser {
 
     public static final ServerDescription[] getDescriptions() {
         SERVER_CACHE.clear();
-        final ArrayList<ServerParser> parsers = new ArrayList<>();
-        parsers.add(new LocalServers());
-
-        Core.verbose("Parsing server providers...");
-        for (final ServerParser parser : parsers) {
-            parser.execute();
-        }
-
-        if (Core.inVerboseMode()) {
-            for (final ServerDescription desc : SERVER_CACHE.keySet()) {
-                Core.verbose(desc.toString());
-            }
-            Core.verbose("Server providers parsed.");
-        }
+        ServerDescription desc = new ServerDescription();
+        SERVER_CACHE.put(desc, new LocalPublicServerExecuter());
 
         Map<ServerDescription, ServerExecuter> SORTED_SERVER_CACHE = new TreeMap<ServerDescription, ServerExecuter>(SERVER_CACHE);
 

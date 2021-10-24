@@ -1,5 +1,6 @@
 package org.parabot.environment.servers.executers;
 
+import org.parabot.core.Configuration;
 import org.parabot.core.Context;
 import org.parabot.core.Core;
 import org.parabot.core.Directories;
@@ -30,11 +31,11 @@ public class LocalPublicServerExecuter extends ServerExecuter {
     private final String providerUrl;
     private final ServerProviderInfo serverProviderInfo;
 
-    public LocalPublicServerExecuter(final String serverName, final ServerProviderInfo serverProviderInfo, String serverUrl, String providerUrl) {
-        this.serverName = serverName;
-        this.serverUrl = serverUrl;
-        this.providerUrl = providerUrl;
-        this.serverProviderInfo = serverProviderInfo;
+    public LocalPublicServerExecuter() {
+        this.serverName = Configuration.serverName;
+        this.serverUrl = Configuration.clientJar;
+        this.providerUrl = Configuration.providerJar;
+        this.serverProviderInfo = new ServerProviderInfo();
     }
 
     @Override

@@ -286,9 +286,7 @@ public class ClassPath {
     /**
      * Dumps a resource from a input stream
      *
-     * @param classPath
      * @param name
-     * @param inputstream
      *
      * @throws IOException
      */

@@ -1,38 +1,16 @@
 package org.parabot.core.ui.components;
 
 import org.parabot.core.Configuration;
-import org.parabot.core.Core;
 import org.parabot.core.io.ProgressListener;
 import org.parabot.core.ui.ServerSelector;
 import org.parabot.core.ui.fonts.Fonts;
 import org.parabot.core.ui.images.Images;
-import org.parabot.core.ui.utils.UILog;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.RenderingHints;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
-
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 
 /**
  * An informative JPanel which tells the user what bot is doing
@@ -40,51 +18,27 @@ import javax.swing.JTextField;
  * @author Everel, EmmaStone
  */
 public class VerboseLoader extends JPanel implements ProgressListener {
-    public static final int STATE_LOADING = 1;
     private static final long serialVersionUID = 7412412644921803896L;
-    private static final int STATE_AUTHENTICATION = 0;
-    private static final int STATE_SERVER_SELECT = 2;
     private static VerboseLoader current;
-    private static String state = "Initializing loader...";
     private final BufferedImage background;
     private final BufferedImage banner;
-    private final BufferedImage loginBox;
     private final ProgressBar progressBar;
-    private int currentState;
     private FontMetrics fontMetrics;
-    private JPanel loginPanel;
 
-    private VerboseLoader(String username, String password) {
+    private VerboseLoader() {
         if (current != null) {
             throw new IllegalStateException("MainScreenComponent already made.");
         }
         current = this;
         this.background = Images.getResource("/storage/images/background.png");
         this.banner = Images.getResource("/storage/images/logo.png");
-        this.loginBox = Images.getResource("/storage/images/login.png");
         this.progressBar = new ProgressBar(400, 20);
         setLayout(new GridBagLayout());
         setSize(775, 510);
         setPreferredSize(new Dimension(775, 510));
         setDoubleBuffered(true);
         setOpaque(false);
-
-        currentState = STATE_SERVER_SELECT; //Force Server Select
-
-        if (currentState == STATE_AUTHENTICATION) {
-            addLoginPanel();
-        } else if (currentState == STATE_SERVER_SELECT) {
-            addServerPanel();
-        }
-    }
-
-    /**
-     * Gets instance of this panel
-     *
-     * @return instance of this panel
-     */
-    public static VerboseLoader get(String username, String password) {
-        return current == null ? new VerboseLoader(username, password) : current;
+        ServerSelector.getInstance();
     }
 
     /**
@@ -93,7 +47,7 @@ public class VerboseLoader extends JPanel implements ProgressListener {
      * @return instance of this panel
      */
     public static VerboseLoader get() {
-        return current == null ? new VerboseLoader(null, null) : current;
+        return current == null ? new VerboseLoader() : current;
     }
 
     /**
@@ -102,99 +56,7 @@ public class VerboseLoader extends JPanel implements ProgressListener {
      * @param message
      */
     public static void setState(final String message) {
-        state = message;
         current.repaint();
-    }
-
-    public void addServerPanel() {
-        JPanel servers = ServerSelector.getInstance();
-        GridBagLayout bagLayout = (GridBagLayout) getLayout();
-        GridBagConstraints c = new GridBagConstraints();
-
-        c.weightx = 1;
-        c.weighty = 1;
-        c.gridx = 0;
-        c.gridy = 0;
-        c.anchor = GridBagConstraints.SOUTH;
-        c.insets = new Insets(0, 0, 25, 0);
-
-        bagLayout.setConstraints(servers, c);
-        add(servers);
-    }
-
-    public void addLoginPanel() {
-        loginPanel = new JPanel();
-        loginPanel.setOpaque(false);
-
-        loginPanel.setLayout(new BoxLayout(loginPanel, BoxLayout.Y_AXIS));
-
-        Font labelFont = Fonts.getResource("leelawadee.ttf");
-
-        JLabel usernameLabel = new JLabel("Username");
-        usernameLabel.setFont(labelFont);
-        usernameLabel.setAlignmentX(Box.CENTER_ALIGNMENT);
-        usernameLabel.setForeground(Color.white);
-
-        final JTextField userInput = new JTextField(20);
-        final JTextField passInput = new JPasswordField(20);
-        userInput.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                passInput.requestFocus();
-            }
-
-        });
-        userInput.setFont(labelFont);
-        userInput.setAlignmentX(Box.CENTER_ALIGNMENT);
-        userInput.setMaximumSize(userInput.getPreferredSize());
-
-        final JButton login = new JButton("Login");
-
-        passInput.setAlignmentX(Box.CENTER_ALIGNMENT);
-        passInput.setMaximumSize(userInput.getPreferredSize());
-        passInput.setPreferredSize(new Dimension(userInput.getWidth(), 20));
-        passInput.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                login.doClick();
-            }
-
-        });
-
-        JLabel passwordLabel = new JLabel("Password");
-        passwordLabel.setFont(labelFont);
-        passwordLabel.setAlignmentX(Box.CENTER_ALIGNMENT);
-        passwordLabel.setForeground(Color.white);
-
-        login.setAlignmentX(Box.CENTER_ALIGNMENT);
-        login.setOpaque(false);
-
-        loginPanel.add(Box.createRigidArea(new Dimension(0, 8)));
-        loginPanel.add(usernameLabel);
-        loginPanel.add(Box.createRigidArea(new Dimension(0, 4)));
-        loginPanel.add(userInput);
-        loginPanel.add(Box.createRigidArea(new Dimension(0, 4)));
-        loginPanel.add(passwordLabel);
-        loginPanel.add(Box.createRigidArea(new Dimension(0, 4)));
-        loginPanel.add(passInput);
-        loginPanel.add(Box.createRigidArea(new Dimension(0, 2)));
-        loginPanel.add(login);
-        loginPanel.add(Box.createRigidArea(new Dimension(0, 4)));
-
-        add(loginPanel, new GridBagConstraints());
-    }
-
-    public void switchState(int state) {
-        removeAll();
-        if (state == STATE_AUTHENTICATION) {
-            addLoginPanel();
-        } else if (state == STATE_SERVER_SELECT) {
-            addServerPanel();
-        }
-        this.currentState = state;
-        revalidate();
     }
 
     /**
@@ -237,18 +99,7 @@ public class VerboseLoader extends JPanel implements ProgressListener {
             fontMetrics = g.getFontMetrics();
         }
 
-        if (currentState == STATE_AUTHENTICATION) {
-            g.drawImage(loginBox, loginPanel.getX() - 30, loginPanel.getY() - 22, null);
-        }
-
         g.setColor(Color.white);
-
-        if (currentState == STATE_LOADING) {
-            progressBar.draw(g, (getWidth() / 2) - 200, 220);
-            g.setFont(Fonts.getResource("leelawadee.ttf"));
-            int x = (getWidth() / 2) - (fontMetrics.stringWidth(state) / 2);
-            g.drawString(state, x, 200);
-        }
 
         g.setFont(Fonts.getResource("leelawadee.ttf"));
         final String version = Configuration.BOT_VERSION.get();

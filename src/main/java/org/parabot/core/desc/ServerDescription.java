@@ -1,5 +1,7 @@
 package org.parabot.core.desc;
 
+import org.parabot.core.Configuration;
+
 /**
  * Holds information about a server
  *
@@ -11,11 +13,10 @@ public class ServerDescription implements Comparable<ServerDescription> {
     private final double revision;
     public int uuid;
 
-    public ServerDescription(final String serverName, final String author,
-                             final double revision) {
-        this.serverName = serverName;
-        this.author = author;
-        this.revision = revision;
+    public ServerDescription() {
+        this.serverName = Configuration.serverName;
+        this.author = Configuration.serverName;
+        this.revision = Configuration.clientVersion;
     }
 
     public String getServerName() {

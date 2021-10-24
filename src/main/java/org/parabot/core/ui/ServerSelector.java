@@ -1,8 +1,9 @@
 package org.parabot.core.ui;
 
+import org.parabot.core.Configuration;
 import org.parabot.core.Core;
 import org.parabot.core.desc.ServerDescription;
-import org.parabot.core.parsers.servers.ServerParser;
+import org.parabot.core.parsers.ServerParser;
 import org.parabot.core.ui.components.ServerComponent;
 import org.parabot.environment.Environment;
 
@@ -22,7 +23,7 @@ import javax.swing.JScrollPane;
 
 public class ServerSelector extends JPanel {
     private static final long serialVersionUID = 5238720307271493899L;
-    public static String initServer;
+    public static String initServer = Configuration.serverName;
     private static ServerSelector instance;
 
     public ServerSelector() {

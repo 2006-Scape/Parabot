@@ -39,7 +39,6 @@ public class Directories {
         cached.put("Compiled", new File(cached.get("Root"), "/2006Scape/scripts/compiled/"));
         cached.put("Resources", new File(cached.get("Root"), "/2006Scape/scripts/resources/"));
         cached.put("Settings", new File(cached.get("Root"), "/2006Scape/settings/"));
-        cached.put("Servers", new File(cached.get("Root"), "/2006Scape/servers/"));
         cached.put("Cache", new File(cached.get("Root"), "/2006Scape/cache/"));
         cached.put("Screenshots", new File(cached.get("Root"), "/2006Scape/screenshots/"));
         Verboser.verbose("Directories cached.");
@@ -57,18 +56,6 @@ public class Directories {
             throw new IllegalArgumentException(f + "is not a directory.");
         }
         cached.put("Compiled", f);
-    }
-
-    /**
-     * Set server bin folder
-     *
-     * @param f
-     */
-    public static void setServerCompiledDirectory(File f) {
-        if (!f.isDirectory()) {
-            throw new IllegalArgumentException(f + "is not a directory.");
-        }
-        cached.put("Servers", f);
     }
 
     /**
@@ -123,15 +110,6 @@ public class Directories {
      */
     public static File getSettingsPath() {
         return cached.get("Settings");
-    }
-
-    /**
-     * Returns the Parabot servers folder.
-     *
-     * @return
-     */
-    public static File getServerPath() {
-        return cached.get("Servers");
     }
 
     /**

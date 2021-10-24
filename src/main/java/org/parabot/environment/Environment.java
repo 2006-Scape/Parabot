@@ -4,7 +4,7 @@ import org.parabot.core.Core;
 import org.parabot.core.desc.ServerDescription;
 import org.parabot.core.lib.Library;
 import org.parabot.core.lib.javafx.JavaFX;
-import org.parabot.core.parsers.servers.ServerParser;
+import org.parabot.core.parsers.ServerParser;
 import org.parabot.core.ui.components.VerboseLoader;
 import org.parabot.environment.api.utils.WebUtil;
 

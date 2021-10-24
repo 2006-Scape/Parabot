@@ -19,4 +19,12 @@ public class Configuration extends org.parabot.api.Configuration {
     public static final String ITEM_API = DATA_API + "items/";
 
     public static final Version BOT_VERSION = ProjectProperties.getProjectVersion();
+
+    public static final String serverName = "2006Scape";
+    public static final String clientJar = "https://2006scape.org/Downloads/client.jar";
+    public static final String hooksFile = "https://2006scape.org/Downloads/bot/2006Scape_hooks.xml";
+    public static final String providerJar = "https://2006scape.org/Downloads/bot/Provider.jar";
+    public static final String clientClass = "Game";
+    public static final Double clientVersion = 1.0;
+
 }
