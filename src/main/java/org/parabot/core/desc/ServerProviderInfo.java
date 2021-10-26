@@ -1,14 +1,11 @@
 package org.parabot.core.desc;
 
-import org.json.simple.JSONObject;
 import org.parabot.core.Configuration;
 import org.parabot.environment.api.utils.WebUtil;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
 import java.util.zip.CRC32;
 
 /**
@@ -17,6 +14,10 @@ import java.util.zip.CRC32;
  * @author Paradox, Everel
  */
 public class ServerProviderInfo {
+
+    public HashMap<String, Integer> getSettings() {
+        return null;
+    }
 
     public URL getClient() {
         try {
