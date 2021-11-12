@@ -1,6 +1,6 @@
 package org.parabot.core.desc;
 
-import org.parabot.core.Configuration;
+import org.parabot.Configuration;
 
 /**
  * Holds information about a server

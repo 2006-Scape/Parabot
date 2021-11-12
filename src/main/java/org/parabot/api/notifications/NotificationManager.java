@@ -2,7 +2,6 @@ package org.parabot.api.notifications;
 
 import org.parabot.api.notifications.types.MacNotificationType;
 import org.parabot.api.notifications.types.NotificationType;
-import org.parabot.api.notifications.types.PushBulletNotificationType;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -34,7 +33,6 @@ public class NotificationManager {
 
     private void fillNotificationTypes() {
         this.notificationTypes.add(new MacNotificationType());
-        this.notificationTypes.add(new PushBulletNotificationType());
     }
 
     public void enableNotificationType(NotificationType type) {

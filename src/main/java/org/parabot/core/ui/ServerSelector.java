@@ -1,6 +1,6 @@
 package org.parabot.core.ui;
 
-import org.parabot.core.Configuration;
+import org.parabot.Configuration;
 import org.parabot.core.Core;
 import org.parabot.core.desc.ServerDescription;
 import org.parabot.core.parsers.ServerParser;

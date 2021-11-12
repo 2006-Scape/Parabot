@@ -1,6 +1,6 @@
 package org.parabot.core.desc;
 
-import org.parabot.core.Configuration;
+import org.parabot.Configuration;
 import org.parabot.environment.api.utils.WebUtil;
 
 import java.net.MalformedURLException;
@@ -74,21 +74,6 @@ public class ServerProviderInfo {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        return null;
-    }
-
-    /**
-     * Gets the current provider version
-     *
-     * @return provider version
-     */
-    public String getProviderVersion() {
-        String providerType = WebUtil.getJsonValue(String.format(Configuration.GET_SERVER_PROVIDER_TYPE, Configuration.serverName), "type");
-        if (providerType != null) {
-            String providerInfo = String.format(Configuration.SERVER_PROVIDER_INFO, providerType);
-            return WebUtil.getJsonValue(providerInfo, "version");
-        }
-
         return null;
     }
 

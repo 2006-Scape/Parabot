@@ -1,7 +1,7 @@
 package org.parabot.core.parsers.randoms;
 
 import org.parabot.api.io.WebUtil;
-import org.parabot.core.Configuration;
+import org.parabot.Configuration;
 import org.parabot.core.Context;
 import org.parabot.core.Core;
 import org.parabot.core.Directories;

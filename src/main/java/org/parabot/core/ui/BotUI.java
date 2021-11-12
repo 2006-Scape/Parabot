@@ -1,6 +1,6 @@
 package org.parabot.core.ui;
 
-import org.parabot.core.Configuration;
+import org.parabot.Configuration;
 import org.parabot.core.Context;
 import org.parabot.core.Directories;
 import org.parabot.core.ui.components.GamePanel;

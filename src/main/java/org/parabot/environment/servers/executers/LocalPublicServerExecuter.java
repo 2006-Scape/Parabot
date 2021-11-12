@@ -1,6 +1,6 @@
 package org.parabot.environment.servers.executers;
 
-import org.parabot.core.Configuration;
+import org.parabot.Configuration;
 import org.parabot.core.Context;
 import org.parabot.core.Core;
 import org.parabot.core.Directories;

@@ -1,7 +1,7 @@
 package org.parabot.environment.servers;
 
 import org.objectweb.asm.Opcodes;
-import org.parabot.core.Configuration;
+import org.parabot.Configuration;
 import org.parabot.core.Context;
 import org.parabot.core.asm.hooks.HookFile;
 import org.parabot.core.asm.interfaces.Injectable;

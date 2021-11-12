@@ -1,6 +1,6 @@
 package org.parabot.api.notifications.types;
 
-import org.parabot.api.Configuration;
+import org.parabot.Configuration;
 
 /**
  * @author JKetelaar

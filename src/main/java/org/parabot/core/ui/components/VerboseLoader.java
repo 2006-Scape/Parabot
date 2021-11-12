@@ -1,6 +1,6 @@
 package org.parabot.core.ui.components;
 
-import org.parabot.core.Configuration;
+import org.parabot.Configuration;
 import org.parabot.core.io.ProgressListener;
 import org.parabot.core.ui.ServerSelector;
 import org.parabot.core.ui.fonts.Fonts;

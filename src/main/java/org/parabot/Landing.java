@@ -1,17 +1,13 @@
 package org.parabot;
 
-import org.parabot.core.Configuration;
 import org.parabot.core.Context;
 import org.parabot.core.Core;
 import org.parabot.core.Directories;
-import org.parabot.core.desc.ServerDescription;
 import org.parabot.core.network.NetworkInterface;
 import org.parabot.core.network.proxy.ProxySocket;
 import org.parabot.core.network.proxy.ProxyType;
 import org.parabot.core.ui.BotUI;
-import org.parabot.core.ui.ServerSelector;
 import org.parabot.core.ui.utils.UILog;
-import org.parabot.environment.Environment;
 
 import java.io.File;
 

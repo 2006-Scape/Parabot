@@ -1,6 +1,6 @@
 package org.parabot.core.ui.components.notifications;
 
-import org.parabot.api.Configuration;
+import org.parabot.Configuration;
 import org.parabot.api.output.Verboser;
 import org.parabot.api.ui.JavaFxUtil;
 
