@@ -75,7 +75,7 @@ public final class Landing {
                 case "-mac":
                     byte[] mac = new byte[6];
                     String str = args[++i];
-                    if (str.toLowerCase().equals("random")) {
+                    if (str.equalsIgnoreCase("random")) {
                         new java.util.Random().nextBytes(mac);
                     } else {
                         i--;
@@ -98,11 +98,8 @@ public final class Landing {
                 case "-no_sec":
                     Core.disableSec();
                     break;
-                case "-uuid":
-                    Core.setQuickLaunchByUuid(Integer.parseInt(args[++i]));
-                    break;
                 default:
-                    System.err.println(String.format("Unknown argument given: %s", arg.toLowerCase()));
+                    System.err.printf("Unknown argument given: %s%n", arg.toLowerCase());
                     break;
             }
         }

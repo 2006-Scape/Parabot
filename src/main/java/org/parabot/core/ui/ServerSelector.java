@@ -1,19 +1,15 @@
 package org.parabot.core.ui;
 
 import org.parabot.Configuration;
-import org.parabot.core.Core;
 import org.parabot.core.desc.ServerDescription;
 import org.parabot.core.parsers.ServerParser;
 import org.parabot.core.ui.components.ServerComponent;
 import org.parabot.environment.Environment;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import javax.swing.*;
+import java.awt.*;
 import java.util.LinkedList;
 import java.util.Queue;
-
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 /**
  * Shows a list of every supported server which can be started
@@ -28,7 +24,7 @@ public class ServerSelector extends JPanel {
 
     public ServerSelector() {
         Queue<ServerComponent> widgets = getServers();
-        if (initServer != null || Core.getQuickLaunchByUuid() > -1) {
+        if (initServer != null) {
             if (runServer(widgets)) {
                 initServer = null;
                 return;
@@ -81,31 +77,18 @@ public class ServerSelector extends JPanel {
     public Queue<ServerComponent> getServers() {
         final Queue<ServerComponent> widgets = new LinkedList<>();
         ServerDescription[] servers = ServerParser.getDescriptions();
-        if (servers != null) {
-            for (ServerDescription desc : servers) {
-                widgets.add(new ServerComponent(desc));
-            }
+        for (ServerDescription desc : servers) {
+            widgets.add(new ServerComponent(desc));
         }
         return widgets;
     }
 
     /**
      * This method is called when -server argument is given, or -uuid arg is given.
-     *
-     * @param widgets
      */
     private boolean runServer(Queue<ServerComponent> widgets) {
         if (widgets == null || widgets.isEmpty()) {
             return false;
-        }
-        if (Core.getQuickLaunchByUuid() > -1) { // match the pre-requested server config uuid to quick-launch
-            for (ServerComponent widget : widgets) {
-                if (widget.desc.uuid == Core.getQuickLaunchByUuid()) {
-                    Environment.load(widget.desc);
-                    return true;
-                }
-            }
-            System.err.println("No server config with -uuid " + Core.getQuickLaunchByUuid() + " was found to quick launch.");
         }
 
         if (initServer != null) {
