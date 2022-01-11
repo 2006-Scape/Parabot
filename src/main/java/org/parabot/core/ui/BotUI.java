@@ -136,9 +136,6 @@ public class BotUI extends JFrame implements ActionListener, ComponentListener, 
             case "Exit":
                 System.exit(0);
                 break;
-            case "Network":
-                NetworkUI.getInstance().setVisible(true);
-                break;
             case "Randoms":
                 ArrayList<String> randoms = new ArrayList<>();
                 for (Random r : Context.getInstance().getRandomHandler().getRandoms()) {
@@ -298,7 +295,6 @@ public class BotUI extends JFrame implements ActionListener, ComponentListener, 
         features = new JMenu("Features");
 
         JMenuItem screenshot = new JMenuItem("Create screenshot");
-        JMenuItem proxy = new JMenuItem("Network");
         JMenuItem randoms = new JMenuItem("Randoms");
         JMenuItem dialog = new JCheckBoxMenuItem("Disable dialog");
         JMenuItem logger = new JCheckBoxMenuItem("Logger");
@@ -328,7 +324,6 @@ public class BotUI extends JFrame implements ActionListener, ComponentListener, 
         notifications.setIcon(new ImageIcon(Images.getResource("/storage/images/bell.png")));
 
         screenshot.addActionListener(this);
-        proxy.addActionListener(this);
         randoms.addActionListener(this);
         dialog.addActionListener(this);
         logger.addActionListener(this);
@@ -342,7 +337,6 @@ public class BotUI extends JFrame implements ActionListener, ComponentListener, 
         stop.addActionListener(this);
 
         file.add(screenshot);
-        file.add(proxy);
         file.add(randoms);
         file.add(dialog);
         file.add(logger);

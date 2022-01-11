@@ -8,7 +8,6 @@ public class ClassRemapper extends Remapper {
     private static final HashMap<String, String> remapNames = new HashMap<String, String>();
 
     static {
-        remapNames.put("java/net/Socket", "org/parabot/core/network/proxy/ProxySocket");
         remapNames.put("java/net/NetworkInterface", "org/parabot/core/network/NetworkInterface");
     }
 

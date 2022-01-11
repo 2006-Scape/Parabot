@@ -4,8 +4,6 @@ import org.parabot.core.Context;
 import org.parabot.core.Core;
 import org.parabot.core.Directories;
 import org.parabot.core.network.NetworkInterface;
-import org.parabot.core.network.proxy.ProxySocket;
-import org.parabot.core.network.proxy.ProxyType;
 import org.parabot.core.ui.BotUI;
 import org.parabot.core.ui.utils.UILog;
 
@@ -55,7 +53,7 @@ public final class Landing {
             switch (arg.toLowerCase()) {
                 case "-createdirs":
                     Directories.validate();
-                    System.out.println("Directories created, you can now run parabot.");
+                    System.out.println("Directories created, you can now run " + Configuration.BOT_TITLE + ".");
                     System.exit(0);
                     break;
                 case "-dump":
@@ -86,15 +84,6 @@ public final class Landing {
                         }
                     }
                     NetworkInterface.setMac(mac);
-                    break;
-                case "-proxy":
-                    ProxyType type = ProxyType.valueOf(args[++i].toUpperCase());
-                    ProxySocket.setProxy(type, args[++i], Integer.parseInt(args[++i]));
-                    break;
-                case "-proxy_auth":
-                case "-auth":
-                    ProxySocket.auth = true;
-                    ProxySocket.setLogin(args[++i], args[++i]);
                     break;
                 case "-no_sec":
                     Core.disableSec();
