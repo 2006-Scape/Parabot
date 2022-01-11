@@ -69,6 +69,7 @@ public final class Landing {
                 case "-scriptsbin":
                     Directories.setScriptCompiledDirectory(new File(args[++i]));
                     break;
+                case "-c":
                 case "-clearcache":
                     Directories.clearCache();
                     break;
