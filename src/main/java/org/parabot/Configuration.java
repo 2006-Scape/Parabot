@@ -10,7 +10,7 @@ import org.parabot.environment.api.utils.Version;
  */
 public class Configuration {
     public static final String serverName = "2006Scape";
-    public static final String clientJar = "https://2006scape.org/Downloads/client.jar";
+    public static String clientJar = "https://2006scape.org/Downloads/client.jar";
     public static final String hooksFile = "https://2006scape.org/Downloads/bot/2006Scape_hooks.xml";
     public static final String providerJar = "https://2006scape.org/Downloads/bot/Provider.jar";
     public static final String clientClass = "Game";

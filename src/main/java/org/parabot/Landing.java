@@ -51,6 +51,11 @@ public final class Landing {
         for (int i = 0; i < args.length; i++) {
             final String arg = args[i].toLowerCase();
             switch (arg.toLowerCase()) {
+                case "-l":
+                case "-local":
+                    Configuration.clientJar = "https://2006scape.org/Downloads/client-local.jar";
+                    Directories.clearCache();
+                    break;
                 case "-createdirs":
                     Directories.validate();
                     System.out.println("Directories created, you can now run " + Configuration.BOT_TITLE + ".");
