@@ -16,9 +16,9 @@
         <additionalparam>-Xdoclint:none</additionalparam>
     </properties>
 
-    <name>Parabot client</name>
-    <description>The best open-source (Runescape Private Server) bot</description>
-    <url>http://www.parabot.org/</url>
+    <name>2006Scape's Parabot client</name>
+    <description>Parabot Fork Specific To 2006Scape</description>
+    <url>https://github.com/2006-Scape/Parabot</url>
 
     <licenses>
         <license>
@@ -30,14 +30,9 @@
 
     <repositories>
         <repository>
-            <id>parabot-maven</id>
-            <name>Parabot its Maven Repository</name>
-            <url>http://maven.parabot.org/</url>
-        </repository>
-        <repository>
-            <id>git-parabot</id>
-            <name>Parabot's Git based repo</name>
-            <url>https://github.com/parabot/Maven-Repository/raw/master/</url>
+            <id>2006scape-maven</id>
+            <name>2006Scape's Git based repo</name>
+            <url>https://raw.github.com/2006-Scape/Maven/master</url>
         </repository>
     </repositories>
 
@@ -179,22 +174,6 @@
             </extension>
         </extensions>
     </build>
-
-    <distributionManagement>
-        <downloadUrl>https://maven.parabot.org/</downloadUrl>
-        <repository>
-            <uniqueVersion>false</uniqueVersion>
-            <id>parabot-maven</id>
-            <name>Custom Maven Repository</name>
-            <url>ftp://maven.parabot.org/public_html</url>
-            <layout>default</layout>
-        </repository>
-        <site>
-            <id>parabot-maven</id>
-            <name>Frontend Parabot Maven</name>
-            <url>ftp://maven.parabot.org/public_html/docs/${project.artifactId}/</url>
-        </site>
-    </distributionManagement>
 
     <reporting>
         <plugins>
